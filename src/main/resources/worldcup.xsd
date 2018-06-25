@@ -20,6 +20,22 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getPlayerByCountryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPlayerByCountryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="player" type="tns:player"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="player">
         <xs:sequence>
             <xs:element name="playerName" type="xs:string"/>

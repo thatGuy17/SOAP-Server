@@ -1,5 +1,7 @@
 package com.example.worldcup;
 
+import localhost._8080.worldcup.GetPlayerByCountryRequest;
+import localhost._8080.worldcup.GetPlayerByCountryResponse;
 import localhost._8080.worldcup.GetPlayerByNameRequest;
 import localhost._8080.worldcup.GetPlayerByNameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class PlayerEndpoint {
+
   private static final String NAMESPACE_URI = "http://localhost:8080/worldcup";
 
   private PlayerRepository playerRepository;
@@ -27,4 +30,13 @@ public class PlayerEndpoint {
 
      return response;
   }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPlayerByCountryRequest")
+    @ResponsePayload
+    public GetPlayerByCountryResponse getPlayerByCountry(@RequestPayload GetPlayerByCountryRequest request) {
+        GetPlayerByCountryResponse response = new GetPlayerByCountryResponse();
+        response.setPlayer(playerRepository.findPlayerByCountry(request.getName()));
+
+        return response;
+    }
 }
